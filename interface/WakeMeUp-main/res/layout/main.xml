@@ -7,7 +7,8 @@
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="175dp"
+        android:layout_weight="0.87" >
 
         <LinearLayout
             android:id="@+id/linearLayout1"
@@ -23,6 +24,7 @@
                     android:id="@+id/textView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:text="Понедельник" />
 
                 <TableRow
@@ -36,13 +38,6 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="TextView"
-                        android:visibility="invisible" />
-
-                    <TextView
                         android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -54,6 +49,7 @@
                     android:id="@+id/TextView01"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:text="Вторник" />
 
                 <TableRow
@@ -67,12 +63,6 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/TextView13"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:visibility="invisible" />
-
-                    <TextView
                         android:id="@+id/TextView07"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -84,6 +74,7 @@
                     android:id="@+id/TextView02"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:text="Среда" />
 
                 <TableRow
@@ -107,6 +98,7 @@
                     android:id="@+id/TextView03"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:text="Четверг" />
 
                 <TableRow
@@ -124,6 +116,7 @@
                     android:id="@+id/TextView04"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:text="Пятница" />
 
                 <TableRow
@@ -147,6 +140,7 @@
                     android:id="@+id/TextView05"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:text="Суббота" />
 
                 <TableRow
@@ -170,6 +164,7 @@
                     android:id="@+id/TextView06"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:text="Воскресенье" />
 
                 <TableRow
@@ -189,8 +184,27 @@
                         android:textAppearance="?android:attr/textAppearanceLarge" />
                 </TableRow>
             </TableLayout>
-
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="225dp"
+            android:layout_height="wrap_content"
+            android:text="Добавить" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Обновить" />
+
+    </LinearLayout>
 
 </LinearLayout>
