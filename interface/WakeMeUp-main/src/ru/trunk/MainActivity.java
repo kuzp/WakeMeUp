@@ -10,7 +10,5 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        Resources res = getResources();
-        String st = res.getString(R.array.DaysOfWeek);
     }
 }
