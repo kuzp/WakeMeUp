@@ -1,0 +1,5 @@
+INDEX VERSION 1.126+C:\Users\Haskell\WakeMeUp\interface\.metadata\.plugins\org.eclipse.jdt.core
+3259312885.index
+4092514743.index
+3020881221.index
+894735586.index

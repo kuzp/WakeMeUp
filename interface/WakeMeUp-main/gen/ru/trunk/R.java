@@ -20,6 +20,8 @@ public final class R {
         public static final int CheckBox04=0x7f050014;
         public static final int CheckBox05=0x7f050018;
         public static final int CheckBox06=0x7f05001c;
+        public static final int TableRow01=0x7f050023;
+        public static final int TableRow02=0x7f050021;
         public static final int TextView01=0x7f050007;
         public static final int TextView02=0x7f05000b;
         public static final int TextView03=0x7f05000f;
@@ -47,9 +49,11 @@ public final class R {
         public static final int tableRow7=0x7f05001b;
         public static final int textView1=0x7f050003;
         public static final int textView2=0x7f050006;
+        public static final int textView3=0x7f050022;
     }
     public static final class layout {
         public static final int main=0x7f030000;
+        public static final int monday_shedule=0x7f030001;
     }
     public static final class string {
         public static final int app_name=0x7f040001;

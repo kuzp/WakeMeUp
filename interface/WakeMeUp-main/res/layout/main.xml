@@ -25,12 +25,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="Понедельник" />
+                    android:text="Понедельник"
+                    android:clickable="true" 
+                    android:onClick="showMondaySchedule"/>
 
                 <TableRow
                     android:id="@+id/tableRow1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content" android:onClick="showMondaySchedule">
 
                     <CheckBox
                         android:id="@+id/checkBox1"
@@ -197,7 +199,7 @@
             android:id="@+id/button1"
             android:layout_width="225dp"
             android:layout_height="wrap_content"
-            android:text="Добавить" />
+            android:text="Добавить" android:clickable="true"/>
 
         <Button
             android:id="@+id/button2"
