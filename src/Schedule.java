@@ -67,17 +67,18 @@ public class Schedule {
         }
     }
 
-    public Collection<String> getRings(final String group, final String parity) throws SQLException {
+    public Collection<String> getRings(final String group, final String day, final String parity) throws SQLException {
         List<String> rings = new ArrayList<String>();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
-            stmt = con.prepareStatement("SELECT day, start_time FROM g_" + group + " WHERE parity=? OR parity=?");
-            stmt.setString(1, parity);
-            stmt.setString(2, "");
+            stmt = con.prepareStatement("SELECT start_time FROM g_" + group + " WHERE day=? AND (parity=? OR parity=?)");
+            stmt.setString(1, day);
+            stmt.setString(2, parity);
+            stmt.setString(3, "");
             rs = stmt.executeQuery();
             while (rs.next()) {
-                rings.add(rs.getString(2) + " - " + rs.getString(1));
+                rings.add(rs.getString(1));
             }
         } finally {
             if (rs != null) {
@@ -88,5 +89,35 @@ public class Schedule {
             }
         }
         return rings;
+    }
+
+    public Collection<Collection<String>> getSchedule(final String group, final String day, final String parity)
+            throws SQLException {
+        List<Collection<String>> schedule = new ArrayList<Collection<String>>();
+        List<String> note = new ArrayList<String>();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = con.prepareStatement("SELECT start_time, end_time, place, subject, type, teacher FROM g_" + group + " WHERE day=? AND (parity=? OR parity=?)");
+            stmt.setString(1, day);
+            stmt.setString(2, parity);
+            stmt.setString(3, "");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                for (int i = 1; i < 7; i++) {
+                    note.add(rs.getString(i));
+                }
+                schedule.add(note);
+                note = new ArrayList<String>();
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+        return schedule;
     }
 }

@@ -18,7 +18,8 @@ public class HTMLParser {
         //System.out.println(parse("3070"));
         //new Schedule().createSchedule("2244");
         //saveSchedule();
-        System.out.println(new Schedule().getRings("2742", "неч"));
+        //System.out.println(new Schedule().getRings("2742", "Среда", "неч"));
+        System.out.println(new Schedule().getSchedule("2742", "Среда", "неч"));
     }
 
     public static void saveSchedule() throws Exception {
