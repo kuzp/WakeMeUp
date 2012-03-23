@@ -30,6 +30,7 @@ public class WakeMeUpBolet implements Bolet {
             }
         } catch (Exception ex) {
             response.addError("Exception", 9001);
+            ex.printStackTrace();
         }
     }
 }
