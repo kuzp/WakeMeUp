@@ -15,11 +15,15 @@ import java.util.regex.Pattern;
  */
 public class HTMLParser {
     public static void main(String[] args) throws Exception {
-        //System.out.println(parse("3070"));
+        //parse("2742");
         //new Schedule().createSchedule("2244");
         //saveSchedule();
-        //System.out.println(new Schedule().getRings("2742", "РЎСЂРµРґР°", "РЅРµС‡"));
-        System.out.println(new Schedule().getSchedule("2742", "РЎСЂРµРґР°", "РЅРµС‡"));
+        //System.out.println(new Schedule().getRings("2742", "Среда", "неч"));
+        //System.out.println(new Schedule().getSchedule("2742", "Среда", "неч"));
+        //new SettingsManager().createSettings(1, "2742");
+        new SettingsManager().updateSettings(1, "Среда", "неч", "09:30", "no", "07:30");
+        new SettingsManager().updateSettings(1, "Среда", "неч", "11:00", "yes", "11:00");
+        System.out.println(new SettingsManager().getRings(1, "Среда", "неч"));
     }
 
     public static void saveSchedule() throws Exception {
@@ -50,12 +54,12 @@ public class HTMLParser {
             if (temp.contains("href")) {
                 al.add(node.getFirstChild().getText());
             }
-            if (!temp.equals("&nbsp;") && !temp.equals("Р’СЂРµРјСЏ") && !temp.equals("РќРµРґРµР»СЏ") && !temp.equals("РњРµСЃС‚Рѕ")
-                    && !temp.equals("РџСЂРµРґРјРµС‚") && !temp.equals("РџСЂРµРїРѕРґР°РІР°С‚РµР»СЊ") && !temp.contains("href")) {
+            if (!temp.equals("&nbsp;") && !temp.equals("Время") && !temp.equals("Неделя") && !temp.equals("Место")
+                    && !temp.equals("Предмет") && !temp.equals("Преподаватель") && !temp.contains("href")) {
                 al.add(node.getText());
             }
         }
-        final String[] week = new String[]{"РџРѕРЅРµРґРµР»СЊРЅРёРє", "Р’С‚РѕСЂРЅРёРє", "РЎСЂРµРґР°", "Р§РµС‚РІРµСЂРі", "РџСЏС‚РЅРёС†Р°", "РЎСѓР±Р±РѕС‚Р°"};
+        final String[] week = new String[]{"Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"};
         int dayN = 0;
         String day = al.get(0);
         String parity = "";
@@ -77,44 +81,44 @@ public class HTMLParser {
                 endTime = al.get(++i);
                 continue;
             }
-            pattern = Pattern.compile("^[Р°-СЏ][Р°-СЏ][Р°-СЏ]$");
+            pattern = Pattern.compile("^[а-я][а-я][а-я]$");
             matcher = pattern.matcher(al.get(i));
             if (matcher.matches()) {
                 parity = al.get(i);
                 continue;
             }
-            pattern = Pattern.compile("^(.+Рґ\\.\\s*[0-9]+.+)");
+            pattern = Pattern.compile("^(.+д\\.\\s*[0-9]+.+)");
             matcher = pattern.matcher(al.get(i));
             if (matcher.matches()) {
                 place = matcher.group(1);
                 continue;
             }
-            pattern = Pattern.compile("([Р°-СЏРђ-РЇ,*\\s\\-[0-9]]+(\\(.+\\))*)\\((.+)\\).*");
+            pattern = Pattern.compile("([а-яА-Я,*\\s\\-[0-9]]+(\\(.+\\))*)\\((.+)\\).*");
             matcher = pattern.matcher(al.get(i));
             if (matcher.matches()) {
                 subject = matcher.group(1);
                 type = matcher.group(3);
                 continue;
             }
-            pattern = Pattern.compile("[Р°-СЏРђ-РЇ]+\\s[Р°-СЏРђ-РЇ]+\\s[Р°-СЏРђ-РЇ]+");
+            pattern = Pattern.compile("[а-яА-Я]+\\s[а-яА-Я]+\\s[а-яА-Я]+");
             matcher = pattern.matcher(al.get(i));
             if (matcher.matches()) {
                 teacher = al.get(i);
             }
-            if (!startTime.isEmpty()) {
+            if (!subject.isEmpty()) {
                 schedule.saveRing(day, startTime, endTime, parity, place, subject, type, teacher, group);
-                parity = "";
-                startTime = "";
-                endTime = "";
-                place = "";
-                subject = "";
-                type = "";
-                teacher = "";
             }
-            for(int j = dayN + 1; j < week.length; j++) {
+            parity = "";
+            startTime = "";
+            endTime = "";
+            place = "";
+            subject = "";
+            type = "";
+            teacher = "";
+            for (int j = dayN + 1; j < week.length; j++) {
                 if (al.get(i).equals(week[j])) {
-                     day = week[j];
-                     dayN = j;
+                    day = week[j];
+                    dayN = j;
                 }
             }
         }
