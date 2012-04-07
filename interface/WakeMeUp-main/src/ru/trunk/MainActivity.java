@@ -5,6 +5,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -28,21 +29,53 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 	final String[] days = {"Понедельник","Вторник","Среда","Четверг","Пятница","Суббота","Воскресенье"};
+	
 	private OnClickListener myClickListener = new OnClickListener() {
 	    public void onClick(View v) {
-	    	TextView mtv = (TextView) v;
+	    	final TextView mtv = (TextView) v;
+	    	List <Item> items =null;
 	    	Log.i("clickable! ",mtv.getText().toString());
+	    	try {
+			items = getScedule(mtv.getText().toString(), "неч");
+			} catch (JSONException e) {
+				e.printStackTrace();
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
+	    	setContentView(R.layout.shedule);
+	    	TextView scheduletv = (TextView)findViewById(R.id.scheduleText);
+	    	scheduletv.setText("");
+	    	ListIterator<Item> iter = items.listIterator();
+	    	Item temp;
+	    	while(iter.hasNext()){
+	    		temp = iter.next();
+	    		scheduletv.append(temp.time + temp.discipline + "\n");
+	    	}
+	    	
 	    }
 	};
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		showMainActivity(null);
+		
+	}
+
+	public void showMondaySchedule(View v) throws URISyntaxException, JSONException {
+		String [] sch = {"09:30 Иностранный язык","11:00 Иностранный язык"};
+		setContentView(R.layout.shedule);
+	}
+
+
+	public void showMainActivity(View v) {
 		setContentView(R.layout.main);
-		LinearLayout ll = (LinearLayout) findViewById(R.id.linLayoutPar);		
+		LinearLayout ll = (LinearLayout) findViewById(R.id.linLayoutPar);
+		
 		for (int i = 0; i <6; i++){
-			TextView tv = new TextView(this);
-			tv.setText(days[i]);
+			TextView tvDay = new TextView(this);
+			tvDay.setText(days[i]);
 			TextView tv2 = new TextView(this);
 			try {
 				tv2.setText(getRings(days[i],"неч")[0]);
@@ -51,28 +84,11 @@ public class MainActivity extends Activity {
 			} catch (URISyntaxException e) {
 				e.printStackTrace();
 			}
-			ll.addView(tv);
-			tv.setClickable(true);
-			tv.setOnClickListener(myClickListener);
+			ll.addView(tvDay);
+			tvDay.setClickable(true);
+			tvDay.setOnClickListener(myClickListener);
 			ll.addView(tv2);
 		}
-		
-	}
-
-	public void showMondaySchedule(View v) throws URISyntaxException, JSONException {
-		String [] sch = {"09:30 Иностранный язык","11:00 Иностранный язык"};
-		setContentView(R.layout.shedule);
-		//for (int i = 0; i < sch.length; i++ ){
-			TextView tv1 = (TextView)findViewById(R.id.tw1);
-			tv1.setText(sch[0]);
-		//} 
-			List <Item> iii = getScedule("Среда", "неч");
-	}
-
-
-	public void showMainActivity(View v) {
-		
-		setContentView(R.layout.main);
 	}
 
    /* private static String convertStreamToString(InputStream is) {
