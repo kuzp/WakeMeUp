@@ -18,18 +18,44 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
 	final String[] days = {"Понедельник","Вторник","Среда","Четверг","Пятница","Суббота","Воскресенье"};
+	private OnClickListener myClickListener = new OnClickListener() {
+	    public void onClick(View v) {
+	    	TextView mtv = (TextView) v;
+	    	Log.i("clickable! ",mtv.getText().toString());
+	    }
+	};
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		LinearLayout ll = (LinearLayout) findViewById(R.id.linLayoutPar);		
+		for (int i = 0; i <6; i++){
+			TextView tv = new TextView(this);
+			tv.setText(days[i]);
+			TextView tv2 = new TextView(this);
+			try {
+				tv2.setText(getRings(days[i],"неч")[0]);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
+			ll.addView(tv);
+			tv.setClickable(true);
+			tv.setOnClickListener(myClickListener);
+			ll.addView(tv2);
+		}
 		
 	}
 
