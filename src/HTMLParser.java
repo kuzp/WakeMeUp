@@ -20,10 +20,11 @@ public class HTMLParser {
         //saveSchedule();
         //System.out.println(new Schedule().getRings("2742", "Среда", "неч"));
         //System.out.println(new Schedule().getSchedule("2742", "Среда", "неч"));
-        //new SettingsManager().createSettings(1, "2742");
-        new SettingsManager().updateSettings(1, "Среда", "неч", "09:30", "no", "07:30");
-        new SettingsManager().updateSettings(1, "Среда", "неч", "11:00", "yes", "11:00");
-        System.out.println(new SettingsManager().getRings(1, "Среда", "неч"));
+        new SettingsManager().createSettings(1, "2742");
+        //new SettingsManager().updateSettings(1, "Среда", "неч", "09:30", "no", "07:30", "проснись и пой", 5);
+        //new SettingsManager().updateSettings(1, 2, "yes", "11:00");
+        //System.out.println(new SettingsManager().getSettings(1, "Среда", "неч", "09:30"));
+        //System.out.println(new SettingsManager().getRings(1, "Среда", "неч"));
     }
 
     public static void saveSchedule() throws Exception {
