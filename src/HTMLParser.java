@@ -1,4 +1,4 @@
-import org.htmlparser.Node;
+п»їimport org.htmlparser.Node;
 import org.htmlparser.NodeFilter;
 import org.htmlparser.Parser;
 import org.htmlparser.filters.*;
@@ -17,14 +17,14 @@ public class HTMLParser {
     public static void main(String[] args) throws Exception {
         //parse("2742");
         //new Schedule().createSchedule("2244");
-        //saveSchedule();
-        //System.out.println(new Schedule().getRings("2742", "Среда", "неч"));
-        //System.out.println(new Schedule().getSchedule("2742", "Среда", "неч"));
-        new SettingsManager().createSettings(1, "2742");
-        //new SettingsManager().updateSettings(1, "Среда", "неч", "09:30", "no", "07:30", "проснись и пой", 5);
+        saveSchedule();
+        //System.out.println(new Schedule().getRings("2742", "РЎСЂРµРґР°", "РЅРµС‡"));
+        //System.out.println(new Schedule().getSchedule("2742", "РЎСЂРµРґР°", "РЅРµС‚"));
+        //new SettingsManager().createSettings(1, "2742");
+        //new SettingsManager().updateSettings(1, "РЎСЂРµРґР°", "РЅРµС‡", "09:30", "no", "07:30", "РїСЂРѕСЃРЅРёСЃСЊ Рё РїРѕР№", 5);
         //new SettingsManager().updateSettings(1, 2, "yes", "11:00");
-        //System.out.println(new SettingsManager().getSettings(1, "Среда", "неч", "09:30"));
-        //System.out.println(new SettingsManager().getRings(1, "Среда", "неч"));
+        //System.out.println(new SettingsManager().getSettings(1, "РЎСЂРµРґР°", "РЅРµС‡", "09:30"));
+        //System.out.println(new SettingsManager().getRings(1, "РЎСЂРµРґР°", "РЅРµС‡"));
     }
 
     public static void saveSchedule() throws Exception {
@@ -55,12 +55,12 @@ public class HTMLParser {
             if (temp.contains("href")) {
                 al.add(node.getFirstChild().getText());
             }
-            if (!temp.equals("&nbsp;") && !temp.equals("Время") && !temp.equals("Неделя") && !temp.equals("Место")
-                    && !temp.equals("Предмет") && !temp.equals("Преподаватель") && !temp.contains("href")) {
+            if (!temp.equals("&nbsp;") && !temp.equals("Р’СЂРµРјСЏ") && !temp.equals("РќРµРґРµР»СЏ") && !temp.equals("РњРµСЃС‚Рѕ")
+                    && !temp.equals("РџСЂРµРґРјРµС‚") && !temp.equals("РџСЂРµРїРѕРґР°РІР°С‚РµР»СЊ") && !temp.contains("href")) {
                 al.add(node.getText());
             }
         }
-        final String[] week = new String[]{"Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"};
+        final String[] week = new String[]{"РџРѕРЅРµРґРµР»СЊРЅРёРє", "Р’С‚РѕСЂРЅРёРє", "РЎСЂРµРґР°", "Р§РµС‚РІРµСЂРі", "РџСЏС‚РЅРёС†Р°", "РЎСѓР±Р±РѕС‚Р°"};
         int dayN = 0;
         String day = al.get(0);
         String parity = "";
@@ -82,26 +82,26 @@ public class HTMLParser {
                 endTime = al.get(++i);
                 continue;
             }
-            pattern = Pattern.compile("^[а-я][а-я][а-я]$");
+            pattern = Pattern.compile("^[Р°-СЏ][Р°-СЏ][Р°-СЏ]$");
             matcher = pattern.matcher(al.get(i));
             if (matcher.matches()) {
                 parity = al.get(i);
                 continue;
             }
-            pattern = Pattern.compile("^(.+д\\.\\s*[0-9]+.+)");
+            pattern = Pattern.compile("^(.+Рґ\\.\\s*[0-9]+.+)");
             matcher = pattern.matcher(al.get(i));
             if (matcher.matches()) {
                 place = matcher.group(1);
                 continue;
             }
-            pattern = Pattern.compile("([а-яА-Я,*\\s\\-[0-9]]+(\\(.+\\))*)\\((.+)\\).*");
+            pattern = Pattern.compile("([Р°-СЏРђ-РЇ,*\\s\\-[0-9]]+(\\(.+\\))*)\\((.+)\\).*");
             matcher = pattern.matcher(al.get(i));
             if (matcher.matches()) {
                 subject = matcher.group(1);
                 type = matcher.group(3);
                 continue;
             }
-            pattern = Pattern.compile("[а-яА-Я]+\\s[а-яА-Я]+\\s[а-яА-Я]+");
+            pattern = Pattern.compile("[Р°-СЏРђ-РЇ]+\\s[Р°-СЏРђ-РЇ]+\\s[Р°-СЏРђ-РЇ]+");
             matcher = pattern.matcher(al.get(i));
             if (matcher.matches()) {
                 teacher = al.get(i);
