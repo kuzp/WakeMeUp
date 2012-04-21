@@ -1,3 +1,4 @@
+package trunk;
 import ru.ifmo.enf.micelius.core.BoletsContainer;
 import ru.ifmo.enf.micelius.server.BoletsRequestHandler;
 import ru.ifmo.enf.micelius.server.ConfigKeys;

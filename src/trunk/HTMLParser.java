@@ -1,8 +1,11 @@
+package trunk;
+
 import org.htmlparser.Node;
 import org.htmlparser.NodeFilter;
 import org.htmlparser.Parser;
 import org.htmlparser.filters.*;
 import org.htmlparser.util.NodeList;
+import trunk.Schedule;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;

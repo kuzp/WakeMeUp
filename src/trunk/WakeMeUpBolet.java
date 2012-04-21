@@ -1,3 +1,4 @@
+package trunk;
 import ru.ifmo.enf.micelius.core.Bolet;
 import ru.ifmo.enf.micelius.core.InnerRequest;
 import ru.ifmo.enf.micelius.core.InnerResponse;

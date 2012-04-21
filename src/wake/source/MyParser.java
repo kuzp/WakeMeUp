@@ -35,7 +35,7 @@ public class MyParser {
                 new HasAttributeFilter("href"))), new HasParentFilter(new HasParentFilter(
                 new HasAttributeFilter("valign", "top")))));
         Node[] nodes = nl.toNodeArray();
-        Schedule schedule = new Schedule();
+        wake.source.Schedule schedule = new wake.source.Schedule();
         for (Node node : nodes) {
             String temp = node.getText();
             schedule.createSchedule(temp);

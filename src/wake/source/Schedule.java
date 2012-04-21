@@ -17,7 +17,7 @@ public class Schedule {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             final String url = "jdbc:mysql://localhost:3306/ifmo_schedule";
-            con = DriverManager.getConnection(url, "root", "rootpwd");
+            con = DriverManager.getConnection(url, "root", "root");
         } catch (ClassNotFoundException e) {
             throw new Exception(e);
         } catch (SQLException e) {

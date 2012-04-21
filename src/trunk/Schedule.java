@@ -1,3 +1,5 @@
+package trunk;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -46,7 +48,12 @@ public class Schedule {
                          final String place, final String subject, final String type,
                          final String teacher, final String group) throws SQLException {
         PreparedStatement stmt = null;
+        Statement st = null;
         try {
+            st = con.createStatement();
+            st.execute("set character_set_client='UTF8'");
+            st.execute("set character_set_results='UTF8'");
+            st.execute("set character_set_connection='UTF8'");
             stmt = con.prepareStatement(
                     "INSERT INTO g_" + group +
                             " (day, start_time, end_time, parity, place, subject, type, teacher) " +
@@ -61,6 +68,9 @@ public class Schedule {
             stmt.setString(8, teacher);
             stmt.execute();
         } finally {
+            if (st != null) {
+                st.close();
+            }
             if (stmt != null) {
                 stmt.close();
             }
