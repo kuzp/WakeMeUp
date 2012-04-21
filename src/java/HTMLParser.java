@@ -1,4 +1,4 @@
-﻿import org.htmlparser.Node;
+import org.htmlparser.Node;
 import org.htmlparser.NodeFilter;
 import org.htmlparser.Parser;
 import org.htmlparser.filters.*;
@@ -9,9 +9,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Author: Bogdanov Kirill
- * Date: 21.02.12
- * Time: 19:32
+ * User: Bogdanov Kirill
+ * Date: 21.04.12
+ * Time: 23:38
  */
 public class HTMLParser {
     public static void main(String[] args) throws Exception {
@@ -19,7 +19,7 @@ public class HTMLParser {
         //new Schedule().createSchedule("2244");
         saveSchedule();
         //System.out.println(new Schedule().getRings("2742", "Среда", "неч"));
-        //System.out.println(new Schedule().getSchedule("2742", "Среда", "нет"));
+        //System.out.println(new Schedule().getSchedule("2742", "Среда", "неч"));
         //new SettingsManager().createSettings(1, "2742");
         //new SettingsManager().updateSettings(1, "Среда", "неч", "09:30", "no", "07:30", "проснись и пой", 5);
         //new SettingsManager().updateSettings(1, 2, "yes", "11:00");

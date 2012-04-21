@@ -1,4 +1,4 @@
-﻿import ru.ifmo.enf.micelius.core.Bolet;
+import ru.ifmo.enf.micelius.core.Bolet;
 import ru.ifmo.enf.micelius.core.InnerRequest;
 import ru.ifmo.enf.micelius.core.InnerResponse;
 import java.util.Collection;
