@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;WakeMeUp-main/bin/WakeMeUp-main.apk&apos; to &apos;__WakeMeUp-main.apk&apos;" description="Rename resource &apos;WakeMeUp-main.apk&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="bin/WakeMeUp-main.apk" name="__WakeMeUp-main.apk" stamp="1333118567063" updateReferences="true"/>
+</session>
