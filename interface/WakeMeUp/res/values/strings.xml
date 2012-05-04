@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="note">Заметка</string>
+    <string name="app_name">Новый будильник</string>
+    <string name="repeat">Повтор</string>
+    <string name="confirm">Сохранить</string>
+    <string name="denied">Отмена</string>
+    <string name="ok">OK</string>
+    <string name="day">День</string>
+    
+</resources>
