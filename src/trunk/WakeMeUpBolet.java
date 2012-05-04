@@ -59,6 +59,26 @@ public class WakeMeUpBolet implements Bolet {
                 }
                 sm.saveRing(userId, generateId + 1, day, wakeTime, message, turn);
             }
+            if (request.getParameter("action").equals("saveSchedule")) {
+                long userId = Long.parseLong(request.getParameter("userId"));
+                String day = request.getParameter("day");
+                String start_time = request.getParameter("startTime");
+                String end_time = request.getParameter("endTime");
+                String parity = request.getParameter("parity");
+                String place = request.getParameter("place");
+                String subject = request.getParameter("subject");
+                String type = request.getParameter("type");
+                String teacher = request.getParameter("teacher");
+                int generateId = 0;
+                final Collection<Integer> ids = sm.getIds(userId);
+                for (int id1 : ids) {
+                    if (id1 > generateId) {
+                        generateId = id1;
+                    }
+                }
+                sm.saveSchedule(userId ,generateId + 1, day, start_time, end_time, parity, place, subject, type,
+                        teacher);
+            }
         } catch (Exception ex) {
             response.addError("Exception", 9001);
             ex.printStackTrace();

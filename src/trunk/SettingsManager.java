@@ -51,7 +51,7 @@ public class SettingsManager {
                 pstmt.setString(10, "no");
                 pstmt.setString(11, rs.getString(2));
                 pstmt.setString(12, "");
-                pstmt.setInt(14-1, 1);
+                pstmt.setInt(14 - 1, 1);
                 pstmt.execute();
                 id++;
             }
@@ -166,9 +166,9 @@ public class SettingsManager {
         return schedule;
     }
 
-    public void saveRing(final long userId, final long id, final String day, final String wake_time,
+    public void saveRing(final long userId, final int id, final String day, final String wake_time,
                          final String message, final int turn) throws SQLException {
-         PreparedStatement stmt = null;
+        PreparedStatement stmt = null;
         Statement st = null;
         try {
             st = con.createStatement();
@@ -179,7 +179,7 @@ public class SettingsManager {
                     "INSERT INTO user_" + userId +
                             " (id, day, parity, type, skip, wake_time, message, turn) " +
                             "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            stmt.setLong(1, id);
+            stmt.setInt(1, id);
             stmt.setString(2, day);
             stmt.setString(3, "");
             stmt.setString(4, "ring");
@@ -197,6 +197,7 @@ public class SettingsManager {
             }
         }
     }
+
     public Collection<Integer> getIds(final long userId) throws SQLException {
         List<Integer> ids = new ArrayList<Integer>();
         Statement stmt = null;
@@ -216,5 +217,42 @@ public class SettingsManager {
             }
         }
         return ids;
+    }
+
+    public void saveSchedule(final long userId, final int id, final String day, final String start_time,
+                             final String end_time, final String parity, final String place, final String subject,
+                             final String type, final String teacher) throws SQLException {
+        PreparedStatement stmt = null;
+        Statement st = null;
+        try {
+            st = con.createStatement();
+            st.execute("set character_set_client='UTF8'");
+            st.execute("set character_set_results='UTF8'");
+            st.execute("set character_set_connection='UTF8'");
+            stmt = con.prepareStatement("INSERT INTO user_" + userId + " (id, day, start_time, end_time, parity," +
+                    " place, subject, type, teacher, skip, wake_time, message, turn) VALUES (?, ?, ?, ?, ?, ?, ?," +
+                    " ?, ?, ?, ?, ?, ?)");
+            stmt.setInt(1, id);
+            stmt.setString(2, day);
+            stmt.setString(3, start_time);
+            stmt.setString(4, end_time);
+            stmt.setString(5, parity);
+            stmt.setString(6, place);
+            stmt.setString(7, subject);
+            stmt.setString(8, type);
+            stmt.setString(9, teacher);
+            stmt.setString(10, "no");
+            stmt.setString(11, start_time);
+            stmt.setString(12, "");
+            stmt.setInt(14 - 1, 1);
+            stmt.execute();
+        } finally {
+            if (st != null) {
+                st.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
     }
 }

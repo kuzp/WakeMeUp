@@ -101,7 +101,7 @@ public class HTMLParser {
                 type = matcher.group(3);
                 continue;
             }
-            pattern = Pattern.compile("[а-яА-Я]+\\s[а-яА-Я]+\\s[а-аА-Я]+");
+            pattern = Pattern.compile("[а-яА-Я]+\\s[а-яА-Я]+\\s[а-яА-Я]+");
             matcher = pattern.matcher(al.get(i));
             if (matcher.matches()) {
                 teacher = al.get(i);
