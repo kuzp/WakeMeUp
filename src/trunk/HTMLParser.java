@@ -1,29 +1,26 @@
-package trunk;
-
 import org.htmlparser.Node;
 import org.htmlparser.NodeFilter;
 import org.htmlparser.Parser;
 import org.htmlparser.filters.*;
 import org.htmlparser.util.NodeList;
-import trunk.Schedule;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * User: Bogdanov Kirill
- * Date: 21.04.12
- * Time: 23:38
+ * Author: Bogdanov Kirill
+ * Date: 24.04.12
+ * Time: 1:47
  */
 public class HTMLParser {
     public static void main(String[] args) throws Exception {
         //parse("2742");
         //new Schedule().createSchedule("2244");
-        saveSchedule();
+        //saveSchedule();
         //System.out.println(new Schedule().getRings("2742", "Среда", "неч"));
         //System.out.println(new Schedule().getSchedule("2742", "Среда", "неч"));
-        //new SettingsManager().createSettings(1, "2742");
+        new SettingsManager().createSettings(1, "2742");
         //new SettingsManager().updateSettings(1, "Среда", "неч", "09:30", "no", "07:30", "проснись и пой", 5);
         //new SettingsManager().updateSettings(1, 2, "yes", "11:00");
         //System.out.println(new SettingsManager().getSettings(1, "Среда", "неч", "09:30"));
@@ -104,7 +101,7 @@ public class HTMLParser {
                 type = matcher.group(3);
                 continue;
             }
-            pattern = Pattern.compile("[а-яА-Я]+\\s[а-яА-Я]+\\s[а-яА-Я]+");
+            pattern = Pattern.compile("[а-яА-Я]+\\s[а-яА-Я]+\\s[а-аА-Я]+");
             matcher = pattern.matcher(al.get(i));
             if (matcher.matches()) {
                 teacher = al.get(i);

@@ -1,4 +1,3 @@
-package trunk;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -143,10 +142,11 @@ public class SettingsManager {
         ResultSet rs = null;
         try {
             stmt = con.prepareStatement("SELECT id, start_time, end_time, place, subject, type, teacher FROM user_" +
-                    userId + " WHERE day=? AND (parity=? OR parity=?)");
+                    userId + " WHERE day=? AND (parity=? OR parity=?) AND NOT type=?");
             stmt.setString(1, day);
             stmt.setString(2, parity);
             stmt.setString(3, "");
+            stmt.setString(4, "ring");
             rs = stmt.executeQuery();
             while (rs.next()) {
                 for (int i = 1; i < 8; i++) {
@@ -164,5 +164,57 @@ public class SettingsManager {
             }
         }
         return schedule;
+    }
+
+    public void saveRing(final long userId, final long id, final String day, final String wake_time,
+                         final String message, final int turn) throws SQLException {
+         PreparedStatement stmt = null;
+        Statement st = null;
+        try {
+            st = con.createStatement();
+            st.execute("set character_set_client='UTF8'");
+            st.execute("set character_set_results='UTF8'");
+            st.execute("set character_set_connection='UTF8'");
+            stmt = con.prepareStatement(
+                    "INSERT INTO user_" + userId +
+                            " (id, day, parity, type, skip, wake_time, message, turn) " +
+                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            stmt.setLong(1, id);
+            stmt.setString(2, day);
+            stmt.setString(3, "");
+            stmt.setString(4, "ring");
+            stmt.setString(5, "no");
+            stmt.setString(6, wake_time);
+            stmt.setString(7, message);
+            stmt.setInt(8, turn);
+            stmt.execute();
+        } finally {
+            if (st != null) {
+                st.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+    }
+    public Collection<Integer> getIds(final long userId) throws SQLException {
+        List<Integer> ids = new ArrayList<Integer>();
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery("SELECT id FROM user_" + userId);
+            while (rs.next()) {
+                ids.add(rs.getInt(1));
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+        return ids;
     }
 }

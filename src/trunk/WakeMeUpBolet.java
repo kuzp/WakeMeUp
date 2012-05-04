@@ -1,7 +1,7 @@
-package trunk;
 import ru.ifmo.enf.micelius.core.Bolet;
 import ru.ifmo.enf.micelius.core.InnerRequest;
 import ru.ifmo.enf.micelius.core.InnerResponse;
+
 import java.util.Collection;
 
 /**
@@ -43,6 +43,21 @@ public class WakeMeUpBolet implements Bolet {
                 String message = request.getParameter("message");
                 int turn = Integer.parseInt(request.getParameter("turn"));
                 sm.updateSettings(userId, id, skip, wakeTime, message, turn);
+            }
+            if (request.getParameter("action").equals("saveRing")) {
+                long userId = Long.parseLong(request.getParameter("userId"));
+                String day = request.getParameter("day");
+                String wakeTime = request.getParameter("wakeTime");
+                String message = request.getParameter("message");
+                int turn = Integer.parseInt(request.getParameter("turn"));
+                int generateId = 0;
+                final Collection<Integer> ids = sm.getIds(userId);
+                for (int id1 : ids) {
+                    if (id1 > generateId) {
+                        generateId = id1;
+                    }
+                }
+                sm.saveRing(userId, generateId + 1, day, wakeTime, message, turn);
             }
         } catch (Exception ex) {
             response.addError("Exception", 9001);
