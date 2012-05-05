@@ -15,24 +15,36 @@ public final class R {
     }
     public static final class id {
         public static final int btnDay=0x7f050001;
+        public static final int btnDay2=0x7f05000d;
+        public static final int btnParity=0x7f05000e;
         public static final int btnRepeat=0x7f050004;
-        public static final int button1=0x7f050006;
-        public static final int button2=0x7f050007;
+        public static final int confirmbtn=0x7f050006;
+        public static final int deniedbtn=0x7f050007;
         public static final int linearLayout1=0x7f050005;
+        public static final int linearLayout3=0x7f05000c;
         public static final int noteContent=0x7f050003;
         public static final int noteText=0x7f050002;
+        public static final int textView1=0x7f050008;
+        public static final int textView2=0x7f05000a;
         public static final int timePicker=0x7f050000;
+        public static final int timePicker1=0x7f050009;
+        public static final int timePicker2=0x7f05000b;
     }
     public static final class layout {
         public static final int main=0x7f030000;
+        public static final int new_schedule_item=0x7f030001;
     }
     public static final class string {
+        public static final int activity_name_1=0x7f040007;
         public static final int app_name=0x7f040001;
         public static final int confirm=0x7f040003;
         public static final int day=0x7f040006;
         public static final int denied=0x7f040004;
+        public static final int end_time=0x7f040009;
         public static final int note=0x7f040000;
         public static final int ok=0x7f040005;
+        public static final int parity=0x7f04000a;
         public static final int repeat=0x7f040002;
+        public static final int start_time=0x7f040008;
     }
 }

@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:orientation="vertical">
-
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical" >
+    
     <TimePicker
         android:id="@+id/timePicker"
         android:layout_width="match_parent"
@@ -29,8 +35,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine" >
-
-        <requestFocus />
     </EditText>
 
     <Button
@@ -47,7 +51,7 @@
         android:gravity="bottom" >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/confirmbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="0px"
@@ -55,12 +59,12 @@
             android:text="@string/confirm" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/deniedbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.15"
             android:text="@string/denied" />
 
     </LinearLayout>
-
 </LinearLayout>
+</ScrollView>

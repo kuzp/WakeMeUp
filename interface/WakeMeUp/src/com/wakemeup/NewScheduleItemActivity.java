@@ -12,24 +12,25 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TimePicker;
 
-public class WakeMeUpActivity extends Activity {
-	
+public class NewScheduleItemActivity extends Activity {
 	final String LOG_TAG = "myLogs";
 	  
-	  final int DIALOG_ITEMS = 1;
+	  final int DIALOG_PARITY = 1;
 	  final int DIALOG_DAYS = 2;
 	  DB db;
 	  Cursor cursor;
 
-	  String[] data = {"без повтора", "5 минут", "10 минут", "15 минут", "20 минут", "25 минут", "30 минут", "1 час"};
+	  String[] parity = {"нет", "четная", "нечетная"};
 	  String[] week = {"Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"}; 
 
 	  /** Called when the activity is first created. */
 	  public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    setContentView(R.layout.main);
-	    TimePicker tp = (TimePicker)this.findViewById(R.id.timePicker);
-		tp.setIs24HourView(true);
+	    setContentView(R.layout.new_schedule_item);
+	    TimePicker tp1 = (TimePicker)this.findViewById(R.id.timePicker1);
+		tp1.setIs24HourView(true);
+		TimePicker tp2 = (TimePicker)this.findViewById(R.id.timePicker2);
+		tp2.setIs24HourView(true);
 
 	    // открываем подключение к БД
 	    db = new DB(this);
@@ -39,10 +40,10 @@ public class WakeMeUpActivity extends Activity {
 
 	  public void onclick(View v) {
 	    switch (v.getId()) {
-	    		case R.id.btnRepeat :
-	      showDialog(DIALOG_ITEMS);
+	    		case R.id.btnParity :
+	      showDialog(DIALOG_PARITY);
 	  break;    
-	    		case R.id.btnDay: 
+	    		case R.id.btnDay2 : 
 		      showDialog(DIALOG_DAYS);
 		      break;
 		      default:
@@ -53,9 +54,9 @@ public class WakeMeUpActivity extends Activity {
 	  protected Dialog onCreateDialog(int id) {
 	    AlertDialog.Builder adb = new AlertDialog.Builder(this);
 	    switch (id) {
-	    	case DIALOG_ITEMS:
-	      adb.setTitle(R.string.repeat);
-	      adb.setSingleChoiceItems(data, -1, myClickListener);
+	    	case DIALOG_PARITY:
+	      adb.setTitle(R.string.parity);
+	      adb.setSingleChoiceItems(parity, -1, myClickListener);
 	      break;
 	    	case DIALOG_DAYS:
 		      adb.setTitle(R.string.day);
@@ -91,5 +92,4 @@ public class WakeMeUpActivity extends Activity {
 	    super.onDestroy();
 	    db.close();
 	  }
-    
 }
