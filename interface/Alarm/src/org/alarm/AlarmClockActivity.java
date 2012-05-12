@@ -41,7 +41,7 @@ public class AlarmClockActivity extends Activity implements View.OnClickListener
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.main);
+        setContentView(R.layout.main);
         showMainActivity(null);
 
 
@@ -79,7 +79,13 @@ public class AlarmClockActivity extends Activity implements View.OnClickListener
 	    		temp = iter.next();
 	    		scheduletv.append(temp.time + " " + temp.discipline + "\n");
 	    	}
-	    	// сюда повесим листенер
+	    	Button btn  = (Button)findViewById(R.id.button1);
+	    	btn.setOnClickListener(new OnClickListener() {
+
+				public void onClick(View v) {
+		    		showMainActivity(null);
+				}
+			});
 	    }
 	};
 

@@ -21,7 +21,6 @@
         android:id="@+id/button1"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:onClick="showMainActivity"
         android:text="К списку будильников" />
 
 </LinearLayout>
