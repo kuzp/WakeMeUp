@@ -50,7 +50,7 @@ public class AlarmClockActivity extends Activity  {
     	if (true) {
         mToastRunnable = new Runnable() {
 			public void run() {
-				setAlarm(7, 15);
+				setAlarm(Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE)+1);
 			}
 		};
 		mShowToastHandler.postDelayed(mToastRunnable, NOTIFICATION_DELAY_TIME);
