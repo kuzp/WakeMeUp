@@ -22,7 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import org.util.*;;
 
-public class AlarmClockActivity extends Activity implements View.OnClickListener {
+public class AlarmClockActivity extends Activity  {
 	private List <Item> items =null;
 	public static final String[] days = {"Воскресенье","Понедельник","Вторник","Среда","Четверг","Пятница","Суббота"};
 	private final int UPDATE_HOUR = 0;
@@ -43,22 +43,20 @@ public class AlarmClockActivity extends Activity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         showMainActivity(null);
-
-
-        //button = (Button) findViewById(R.id.start);
-        //button.setOnClickListener(this);
         }
+    OnClickListener ocl = new OnClickListener() {
 
-    public void onClick(View v) {
-    	if (v.getId() == R.id.start) {
+    	public void onClick(View v) {
+    	if (true) {
         mToastRunnable = new Runnable() {
 			public void run() {
-				setAlarm(1, 12);
+				setAlarm(7, 15);
 			}
 		};
 		mShowToastHandler.postDelayed(mToastRunnable, NOTIFICATION_DELAY_TIME);
 		}
-    }
+    	}
+    };
 	private OnClickListener myClickListener = new OnClickListener() {
 	    public void onClick(View v) {
 	    	final TextView mtv = (TextView) v;
@@ -109,6 +107,10 @@ public class AlarmClockActivity extends Activity implements View.OnClickListener
 			tvDay.setOnClickListener(myClickListener);
 			ll.addView(tv2);
 		}
+        button = new Button(this);//(Button) findViewById(R.id.start);
+        button.setText("Поставить");
+        button.setOnClickListener(ocl);
+        ll.addView(button);
 	}
 
 	private void updateAlarm(){
