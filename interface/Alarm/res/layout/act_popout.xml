@@ -2,12 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#990000"
     android:orientation="vertical" >
-
+
     <Button
         android:id="@+id/tv_stop_player"
-        android:layout_width="wrap_content"
+        android:layout_width="216dp"
+        android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50pt"
         android:text="@string/stop" />
 
 </LinearLayout>

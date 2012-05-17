@@ -2,8 +2,6 @@ package org.alarm;
 
 import java.net.URISyntaxException;
 import java.util.Calendar;
-import java.util.List;
-import java.util.ListIterator;
 
 import org.json.JSONException;
 
@@ -11,22 +9,29 @@ import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import org.util.*;;
+import org.util.*;
+
+import org.alarm.Preferences;
+import org.alarm.R;
 
 public class AlarmClockActivity extends Activity  {
-	private List <Item> items =null;
-	public static final String[] days = {"Р’РѕСЃРєСЂРµСЃРµРЅСЊРµ","РџРѕРЅРµРґРµР»СЊРЅРёРє","Р’С‚РѕСЂРЅРёРє","РЎСЂРµРґР°","Р§РµС‚РІРµСЂРі","РџСЏС‚РЅРёС†Р°","РЎСѓР±Р±РѕС‚Р°"};
+	public static final String[] days = {"Понедельник","Вторник","Среда","Четверг","Пятница","Суббота","Воскресенье"};
 	private final int UPDATE_HOUR = 0;
 	private final int UPDATE_MINUTE = 1;
+	private final static int PREFS_UPDATED = 100;
 
 	private final static String tag = "Alarm";
 	private final static long NOTIFICATION_DELAY_TIME = 2 * 1000;
@@ -44,6 +49,30 @@ public class AlarmClockActivity extends Activity  {
         setContentView(R.layout.main);
         showMainActivity(null);
         }
+    @Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.options_menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			// Disable alarm, show invitation
+			case R.id.om_stop:
+				stopRepeating();
+				break;
+			// Start PreferenceActivity
+			case R.id.om_prefs:
+				Intent intent = new Intent(getBaseContext(),
+						Preferences.class);
+				startActivityForResult(intent, PREFS_UPDATED);
+				break;
+		}
+
+		return super.onOptionsItemSelected(item);
+	}
     OnClickListener ocl = new OnClickListener() {
 
     	public void onClick(View v) {
@@ -60,30 +89,9 @@ public class AlarmClockActivity extends Activity  {
 	private OnClickListener myClickListener = new OnClickListener() {
 	    public void onClick(View v) {
 	    	final TextView mtv = (TextView) v;
-
-	    	try {
-			items = RequestUtils.getScedule(mtv.getText().toString(), "РЅРµС‡");
-			} catch (JSONException e) {
-				e.printStackTrace();
-			} catch (URISyntaxException e) {
-				e.printStackTrace();
-			}
-	    	setContentView(R.layout.shedule);
-	    	TextView scheduletv = (TextView)findViewById(R.id.scheduleText);
-	    	scheduletv.setText("");
-	    	ListIterator<Item> iter = items.listIterator();
-	    	Item temp;
-	    	while(iter.hasNext()){
-	    		temp = iter.next();
-	    		scheduletv.append(temp.time + " " + temp.discipline + "\n");
-	    	}
-	    	Button btn  = (Button)findViewById(R.id.button1);
-	    	btn.setOnClickListener(new OnClickListener() {
-
-				public void onClick(View v) {
-		    		showMainActivity(null);
-				}
-			});
+	    	final Intent i = new Intent(AlarmClockActivity.this, ScheduleActivity.class);
+	    	i.putExtra("items", mtv.getText().toString());
+	    	startActivity(i);
 	    }
 	};
 
@@ -91,24 +99,31 @@ public class AlarmClockActivity extends Activity  {
 		setContentView(R.layout.main);
 		LinearLayout ll = (LinearLayout) findViewById(R.id.linLayoutPar);
 
-		for (int i = 1; i <7; i++){
-			TextView tvDay = new TextView(this);
+		for (int i = 0; i < 7; i++){
+			LinearLayout llDay = new LinearLayout(this);
+			Button tvDay = new Button(this);
 			tvDay.setText(days[i]);
 			TextView tv2 = new TextView(this);
 			try {
-				tv2.setText(RequestUtils.getRings(days[i],"РЅРµС‡")[0]);
+				tv2.setText(RequestUtils.getRings(days[i])[0]);
 			} catch (JSONException e) {
 				Log.e("JSONException", e.getMessage());
 			} catch (URISyntaxException e) {
 				Log.e("URISyntaxException", e.getMessage());
+			} catch (ArrayIndexOutOfBoundsException e) {
+				tv2.setText("");
 			}
-			ll.addView(tvDay);
+			tvDay.setWidth(200);
+			tv2.setTextSize(20);
+			tv2.setTextColor(Color.BLACK);
+			ll.addView(llDay);
+			llDay.addView(tvDay);
 			tvDay.setClickable(true);
 			tvDay.setOnClickListener(myClickListener);
-			ll.addView(tv2);
+			llDay.addView(tv2);
 		}
         button = new Button(this);//(Button) findViewById(R.id.start);
-        button.setText("РџРѕСЃС‚Р°РІРёС‚СЊ");
+        button.setText("ОК");
         button.setOnClickListener(ocl);
         ll.addView(button);
 	}

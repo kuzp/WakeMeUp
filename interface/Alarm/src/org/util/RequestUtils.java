@@ -20,13 +20,13 @@ import org.json.JSONObject;
 import android.util.Log;
 
 public class RequestUtils {
-	public static JSONObject getJson(String userID, String method, String action, String day, String parity, String group) throws URISyntaxException, JSONException{
-		final String SERVER_URL = "http://178.130.32.166:8075/";
+	public static JSONObject getJson(String userID, String method, String action, String day) throws URISyntaxException, JSONException{
+		final String SERVER_URL = "http://10.0.2.2:8075/";
     	final HttpClient httpclient = new DefaultHttpClient();
     	final HttpGet httpget = new HttpGet();
     	JSONObject jsonObj = null;
     	String jsonString = "Oups!";
-    	final String uriS = SERVER_URL+ method + "?action=" + action + "&day=" + day + "&parity=" + parity +"&group=" + group + "&userId=" + userID;
+    	final String uriS = SERVER_URL+ method + "?action=" + action + "&day=" + day + "&userId=" + userID;
     	httpget.setURI(new URI(uriS));
 		System.out.println(uriS);
     	try {
@@ -36,7 +36,7 @@ public class RequestUtils {
     		Log.i("json:",jsonString);
     		jsonObj = new JSONObject(jsonString);
 
-    		jsonObj.remove("errors"); ///
+    		jsonObj.remove("errors"); 
 
     	} catch (ClientProtocolException e) {
     		Log.e("ClientPortExc", e.getMessage());
@@ -48,12 +48,12 @@ public class RequestUtils {
 
     	return jsonObj;
     }
-	public static JSONObject getJson(String action, String day, String parity)throws URISyntaxException, JSONException{
-		return getJson("1","wakeBolet", action, day, parity, "2742");
+	public static JSONObject getJson(String action, String day)throws URISyntaxException, JSONException{
+		return getJson("1","wakeBolet", action, day);
 	}
 
-	public static String[] getRings(String day, String parity) throws JSONException, URISyntaxException{
-		JSONObject json = getJson("rings", day, parity);
+	public static String[] getRings(String day) throws JSONException, URISyntaxException{
+		JSONObject json = getJson("rings", day);
 		JSONArray jarray = json.getJSONArray("rings");
 		int len = jarray.length();
 		String[] result= new String[len];
@@ -63,9 +63,9 @@ public class RequestUtils {
 		return result;
 	}
 
-	public static List<Item> getScedule(String day, String parity) throws JSONException, URISyntaxException{
+	public static List<Item> getScedule(String day) throws JSONException, URISyntaxException{
 		List<Item> items = new LinkedList<Item>();
-		JSONObject json = getJson("schedule", day, parity);
+		JSONObject json = getJson("schedule", day);
 		int len = json.length();
 		for (int i = 0; i < len; i++){
 			JSONArray jarray = json.getJSONArray(Integer.toString(i));

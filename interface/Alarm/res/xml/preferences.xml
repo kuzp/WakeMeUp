@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+	<CheckBoxPreference
+		android:key="vibration_pref"
+		android:title="@string/prefs_vibration_option"
+		android:summary="@string/prefs_vibration_option_summary"
+		android:defaultValue="true"
+		/>
+	<RingtonePreference
+		android:key="ringtone_pref"
+		android:title="@string/prefs_ringtone_option"
+		android:summary="@string/prefs_ringtone_option_summary"
+		android:showDefault="true"
+		android:showSilent="true"
+		android:defaultValue="Default"
+		android:ringtoneType="ringtone|alarm"
+		/>
+	<CheckBoxPreference
+		android:key="snap_pref"
+		android:title="@string/prefs_snap_option"
+		android:summary="@string/prefs_snap_option_summary"
+		android:defaultValue="true"
+		/>
+</PreferenceScreen>

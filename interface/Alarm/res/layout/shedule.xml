@@ -2,19 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#B8B8B8" >
 
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="375dp" >
-
-        <TextView
-            android:id="@+id/scheduleText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="" />
-
+
     </ScrollView>
 
     <Button

@@ -4,5 +4,14 @@
     <string name="hello">Hello World, AlarmActivity!</string>
     <string name="app_name">Alarm</string>
     <string name="stop">Остановить</string>
+    <string name="om_stop_title">Stop</string>
+    <string name="om_prefs_title">Settings</string>
+    <string name="prefs_vibration_option">Vibrate</string>
+    <string name="prefs_vibration_option_summary">Vibrate when alarm goes off</string>
+    <string name="prefs_ringtone_option">Alarm ringtone</string>
+    <string name="prefs_ringtone_option_summary">Select a ringtone for an alarm</string>
+    <string name="prefs_snap_option">Snap to 5 min</string>
+    <string name="prefs_snap_option_summary">Snap minutes clock to 5 minutes intervals</string>
+    <string name="prefs_title">Preferences</string>
 
 </resources>

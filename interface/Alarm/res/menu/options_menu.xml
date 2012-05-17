@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+		android:id="@+id/om_stop"
+		android:title="@string/om_stop_title"
+		android:icon="@drawable/om_stop"
+		/>
+	<item
+		android:id="@+id/om_prefs"
+		android:title="@string/om_prefs_title"
+		android:icon="@drawable/om_settings"
+		/>
+</menu>
+	
