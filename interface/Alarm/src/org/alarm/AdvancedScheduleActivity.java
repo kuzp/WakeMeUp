@@ -14,11 +14,11 @@ public class AdvancedScheduleActivity extends Activity {
 		TextView tv = new TextView(this);
 		Bundle extras = getIntent().getExtras();
 		String[] item = (String[]) extras.get("item");
-		tv.append("Начало: " + item[0] + "\n");
-		tv.append("Место: " + item[1] + "\n");
-		tv.append("Предмет: " + item[2] + "\n");
-		tv.append("Тип: " + item[3] + "\n");
-		tv.append("Преподаватель: " + item[4]);
+		tv.append("Р’СЂРµРјСЏ: " + item[0] + "\n");
+		tv.append("РњРµСЃС‚Рѕ: " + item[1] + "\n");
+		tv.append("РџСЂРµРґРјРµС‚: " + item[2] + "\n");
+		tv.append("РўРёРї: " + item[3] + "\n");
+		tv.append("РџСЂРµРїРѕРґР°РІР°С‚РµР»СЊ: " + item[4]);
 		tv.setTextColor(Color.BLACK);
 		ll.addView(tv);
 	}

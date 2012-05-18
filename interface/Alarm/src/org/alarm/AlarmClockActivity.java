@@ -28,7 +28,7 @@ import org.alarm.Preferences;
 import org.alarm.R;
 
 public class AlarmClockActivity extends Activity  {
-	public static final String[] days = {"Понедельник","Вторник","Среда","Четверг","Пятница","Суббота","Воскресенье"};
+	public static final String[] days = {"РџРѕРЅРµРґРµР»СЊРЅРёРє","Р’С‚РѕСЂРЅРёРє","РЎСЂРµРґР°","Р§РµС‚РІРµСЂРі","РџСЏС‚РЅРёС†Р°","РЎСѓР±Р±РѕС‚Р°","Р’РѕСЃРєСЂРµСЃРµРЅСЊРµ"};
 	private final int UPDATE_HOUR = 0;
 	private final int UPDATE_MINUTE = 1;
 	private final static int PREFS_UPDATED = 100;
@@ -123,7 +123,7 @@ public class AlarmClockActivity extends Activity  {
 			llDay.addView(tv2);
 		}
         button = new Button(this);//(Button) findViewById(R.id.start);
-        button.setText("ОК");
+        button.setText("Р—Р°Р·РІРѕРЅРёС‚СЊ");
         button.setOnClickListener(ocl);
         ll.addView(button);
 	}

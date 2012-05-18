@@ -15,7 +15,7 @@ public class ScheduleReceiver extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 		Calendar cal = Calendar.getInstance();
 		String day = AlarmClockActivity.days[cal.get(Calendar.DAY_OF_WEEK)];
-		if (day.equals("Понедельник")){
+		if (day.equals("РџРѕРЅРµРґРµР»СЊРЅРёРє")){
 			return;
 		}
 		Intent i = new Intent(context, AlarmClockActivity.class);
