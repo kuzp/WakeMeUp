@@ -28,19 +28,27 @@
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
-        
+
         <activity
 			android:name=".Preferences"
 			android:label="@string/prefs_title" >
 		</activity>
-		
+
         <activity
 			android:name=".ScheduleActivity"
 			android:label="@string/app_name" >
 		</activity>
-		
+
         <activity
 			android:name=".AdvancedScheduleActivity"
+			android:label="@string/app_name" >
+		</activity>
+		<activity
+			android:name=".ExceptionActivity"
+			android:label="@string/app_name" >
+		</activity>
+        <activity
+			android:name=".MyActivity"
 			android:label="@string/app_name" >
 		</activity>
 

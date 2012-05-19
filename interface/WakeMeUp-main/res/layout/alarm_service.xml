@@ -9,13 +9,13 @@
         android:text="alarm_service"/>
 
     <Button android:id="@+id/start_alarm"
-        android:layout_width="wrap_content" android:layout_height="wrap_content" 
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:text="start_alarm_service">
         <requestFocus />
     </Button>
 
     <Button android:id="@+id/stop_alarm"
-        android:layout_width="wrap_content" android:layout_height="wrap_content" 
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:text="stop_alarm_service" />
 
 </LinearLayout>

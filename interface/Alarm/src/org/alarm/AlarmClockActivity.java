@@ -8,6 +8,7 @@ import org.json.JSONException;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -27,7 +28,9 @@ import org.util.*;
 import org.alarm.Preferences;
 import org.alarm.R;
 
-public class AlarmClockActivity extends Activity  {
+public class AlarmClockActivity extends MyActivity  {
+
+
 	public static final String[] days = {"Понедельник","Вторник","Среда","Четверг","Пятница","Суббота","Воскресенье"};
 	private final int UPDATE_HOUR = 0;
 	private final int UPDATE_MINUTE = 1;
@@ -46,6 +49,7 @@ public class AlarmClockActivity extends Activity  {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.main);
         showMainActivity(null);
         }
@@ -112,6 +116,9 @@ public class AlarmClockActivity extends Activity  {
 				Log.e("URISyntaxException", e.getMessage());
 			} catch (ArrayIndexOutOfBoundsException e) {
 				tv2.setText("");
+			} catch(Exception exception){
+				catchServerIsBrokenException();
+				return;
 			}
 			tvDay.setWidth(200);
 			tv2.setTextSize(20);
@@ -223,4 +230,7 @@ public class AlarmClockActivity extends Activity  {
 		AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
 		am.cancel(sender);
 	}
+
+
+
 }

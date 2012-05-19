@@ -6,6 +6,8 @@ import java.net.URISyntaxException;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.alarm.AlarmClockActivity;
+import org.alarm.ExceptionActivity;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -17,9 +19,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 public class RequestUtils {
+
 	public static JSONObject getJson(String userID, String method, String action, String day) throws URISyntaxException, JSONException{
 		final String SERVER_URL = "http://10.0.2.2:8075/";
     	final HttpClient httpclient = new DefaultHttpClient();
@@ -36,7 +41,8 @@ public class RequestUtils {
     		Log.i("json:",jsonString);
     		jsonObj = new JSONObject(jsonString);
 
-    		jsonObj.remove("errors"); 
+    		jsonObj.remove("errors");
+
 
     	} catch (ClientProtocolException e) {
     		Log.e("ClientPortExc", e.getMessage());
@@ -80,5 +86,6 @@ public class RequestUtils {
 	private int getMinute(String time){
 		return Integer.parseInt(time.substring(3));
 	}
+
 
 }

@@ -16,22 +16,24 @@ public final class R {
         public static final int om_stop=0x7f020002;
     }
     public static final class id {
+        public static final int ExceptionMessage=0x7f070002;
         public static final int as_container=0x7f070001;
-        public static final int button1=0x7f070006;
-        public static final int l_container=0x7f070002;
-        public static final int linLayoutPar=0x7f070003;
-        public static final int om_prefs=0x7f070008;
-        public static final int om_stop=0x7f070007;
-        public static final int scrollView1=0x7f070005;
-        public static final int start=0x7f070004;
+        public static final int button1=0x7f070003;
+        public static final int l_container=0x7f070004;
+        public static final int linLayoutPar=0x7f070005;
+        public static final int om_prefs=0x7f070009;
+        public static final int om_stop=0x7f070008;
+        public static final int scrollView1=0x7f070007;
+        public static final int start=0x7f070006;
         public static final int tv_stop_player=0x7f070000;
     }
     public static final class layout {
         public static final int act_popout=0x7f030000;
         public static final int advanced_schedule=0x7f030001;
-        public static final int main=0x7f030002;
-        public static final int main1=0x7f030003;
-        public static final int shedule=0x7f030004;
+        public static final int exception_layout=0x7f030002;
+        public static final int main=0x7f030003;
+        public static final int main1=0x7f030004;
+        public static final int shedule=0x7f030005;
     }
     public static final class menu {
         public static final int options_menu=0x7f060000;

@@ -17,20 +17,24 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
-public class ScheduleActivity extends Activity {
+public class ScheduleActivity extends MyActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		List <Item> items = null;
 		final Intent i = new Intent(this, AlarmClockActivity.class);
-		Bundle extras = getIntent().getExtras();
+
     	try {
+    		Bundle extras = getIntent().getExtras();
     		items = RequestUtils.getScedule(extras.get("items").toString());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
+		}catch (Exception e) {
+			catchServerIsBrokenException();
+			return;
 		}
-    	
+
     	setContentView(R.layout.shedule);
     	final ScrollView sv = (ScrollView) findViewById(R.id.scrollView1);
     	final LinearLayout ll = new LinearLayout(this);
