@@ -13,7 +13,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 	private final static String tag = "AlarmReceiver";
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		Log.d(tag, "ALARM GOES OFF!");	
+		Log.d(tag, "ALARM GOES OFF!");
 
 		// Capture wake-lock in order to keep phone waking when alarm will go off
 		PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);

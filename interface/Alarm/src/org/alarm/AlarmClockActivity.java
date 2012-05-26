@@ -22,6 +22,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 import org.util.*;
 
@@ -30,8 +31,11 @@ import org.alarm.R;
 
 public class AlarmClockActivity extends MyActivity  {
 
+	private final long UPDATE_INTERVAL = AlarmManager.INTERVAL_DAY;
+	//private final long CHEK_HOUR = 23;
+	//private final long CHEK_MINUTE = 50;
 
-	public static final String[] days = {"Понедельник","Вторник","Среда","Четверг","Пятница","Суббота","Воскресенье"};
+	public static final String[] days = {"Воскресенье","Понедельник","Вторник","Среда","Четверг","Пятница","Суббота"};
 	private final int UPDATE_HOUR = 0;
 	private final int UPDATE_MINUTE = 1;
 	private final static int PREFS_UPDATED = 100;
@@ -50,9 +54,16 @@ public class AlarmClockActivity extends MyActivity  {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        try{
+        	setAlarm(savedInstanceState.getInt("hour"),savedInstanceState.getInt("minute"));
+        }catch(Exception e){
+        	//todo nothing
+        }
+
         setContentView(R.layout.main);
         showMainActivity(null);
-        }
+        updateAlarm();
+    }
     @Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
@@ -77,19 +88,7 @@ public class AlarmClockActivity extends MyActivity  {
 
 		return super.onOptionsItemSelected(item);
 	}
-    OnClickListener ocl = new OnClickListener() {
 
-    	public void onClick(View v) {
-    	if (true) {
-        mToastRunnable = new Runnable() {
-			public void run() {
-				setAlarm(Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE)+1);
-			}
-		};
-		mShowToastHandler.postDelayed(mToastRunnable, NOTIFICATION_DELAY_TIME);
-		}
-    	}
-    };
 	private OnClickListener myClickListener = new OnClickListener() {
 	    public void onClick(View v) {
 	    	final TextView mtv = (TextView) v;
@@ -103,7 +102,7 @@ public class AlarmClockActivity extends MyActivity  {
 		setContentView(R.layout.main);
 		LinearLayout ll = (LinearLayout) findViewById(R.id.linLayoutPar);
 
-		for (int i = 0; i < 7; i++){
+		for (int i = 1; i < 7; i++){
 			LinearLayout llDay = new LinearLayout(this);
 			Button tvDay = new Button(this);
 			tvDay.setText(days[i]);
@@ -129,10 +128,28 @@ public class AlarmClockActivity extends MyActivity  {
 			tvDay.setOnClickListener(myClickListener);
 			llDay.addView(tv2);
 		}
+		final TimePicker tp = new TimePicker(this);
+		tp.setIs24HourView(true);
         button = new Button(this);//(Button) findViewById(R.id.start);
         button.setText("Зазвонить");
-        button.setOnClickListener(ocl);
+        button.setOnClickListener(new OnClickListener() {
+
+        	public void onClick(View v) {
+        		if (true) {
+        			mToastRunnable = new Runnable() {
+        				public void run() {
+        					setAlarm(tp.getCurrentHour(),tp.getCurrentMinute());
+        				}
+        			};
+        			mShowToastHandler.postDelayed(mToastRunnable, NOTIFICATION_DELAY_TIME);
+        		}
+        	}
+        }
+        );
+
+
         ll.addView(button);
+        ll.addView(tp);
 	}
 
 	private void updateAlarm(){
@@ -148,7 +165,7 @@ public class AlarmClockActivity extends MyActivity  {
 		 calendar.set(Calendar.MINUTE, UPDATE_MINUTE);
 		 calendar.add(Calendar.DAY_OF_YEAR, 1);
 
-		 am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY,pendingIntent);
+		 am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), UPDATE_INTERVAL,pendingIntent);
 	}
     public void onProceedSetTime() {
 		mShowToastHandler.removeCallbacks(mToastRunnable);
@@ -231,6 +248,14 @@ public class AlarmClockActivity extends MyActivity  {
 		am.cancel(sender);
 	}
 
-
+//    private void restartCheking(){
+//    	 Intent intent = new Intent(this, ScheduleReceiver.class);
+//    	 PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0,
+//    	 intent, PendingIntent.FLAG_CANCEL_CURRENT );   //!! Questions about the flag
+//    	 AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
+//
+//    	 am.cancel(pendingIntent);
+//    	 am.setRepeating(AlarmManager.RTC_WAKEUP, , interval, operation)
+//    }
 
 }

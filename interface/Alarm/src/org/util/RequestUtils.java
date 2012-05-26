@@ -26,7 +26,7 @@ import android.util.Log;
 public class RequestUtils {
 
 	public static JSONObject getJson(String userID, String method, String action, String day) throws URISyntaxException, JSONException{
-		final String SERVER_URL = "http://10.0.2.2:8075/";
+		final String SERVER_URL = "http://178.130.32.166:8075/";
     	final HttpClient httpclient = new DefaultHttpClient();
     	final HttpGet httpget = new HttpGet();
     	JSONObject jsonObj = null;
@@ -80,10 +80,10 @@ public class RequestUtils {
 		return items;
 	}
 
-	private int getHour(String time){
+	public static int getHour(String time){
 		return Integer.parseInt(time.substring(0, 2));
 	}
-	private int getMinute(String time){
+	public static int getMinute(String time){
 		return Integer.parseInt(time.substring(3));
 	}
 
